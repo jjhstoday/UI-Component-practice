@@ -1,9 +1,8 @@
-import "./style.css";
-import { throttle, debounce } from "./util";
+import { throttle, debounce } from './util.js';
 
-const navElem = document.querySelector("#nav");
+const navElem = document.querySelector('#nav');
 const navItems = Array.from(navElem.children);
-const contentsElem = document.querySelector("#contents");
+const contentsElem = document.querySelector('#contents');
 const contentItems = Array.from(contentsElem.children);
 
 let offsetTops = [];
@@ -15,26 +14,29 @@ const getOffsetTops = () => {
 };
 getOffsetTops();
 
-window.addEventListener("scroll", throttle(e => {
-  const { scrollTop } = e.target.scrollingElement;
-  const targetIndex = offsetTops.findIndex(([from, to]) => (
-    scrollTop >= from && scrollTop < to
-  ))
-  Array.from(navElem.children).forEach((c, i) => {
-    if (i !== targetIndex) c.classList.remove('on');
-    else c.classList.add('on');
-  })
-}, 300));
+window.addEventListener(
+  'scroll',
+  throttle(e => {
+    const { scrollTop } = e.target.scrollingElement;
+    const targetIndex = offsetTops.findIndex(
+      ([from, to]) => scrollTop >= from && scrollTop < to
+    );
+    Array.from(navElem.children).forEach((c, i) => {
+      if (i !== targetIndex) c.classList.remove('on');
+      else c.classList.add('on');
+    });
+  }, 300)
+);
 
-window.addEventListener("resize", debounce(getOffsetTops, 300));
+window.addEventListener('resize', debounce(getOffsetTops, 300));
 
-navElem.addEventListener("click", e => {
+navElem.addEventListener('click', e => {
   const targetElem = e.target;
-  if (targetElem.tagName === "BUTTON") {
+  if (targetElem.tagName === 'BUTTON') {
     const targetIndex = navItems.indexOf(targetElem.parentElement);
     contentItems[targetIndex].scrollIntoView({
-      block: "start",
-      behavior: "smooth"
+      block: 'start',
+      behavior: 'smooth'
     });
   }
 });
