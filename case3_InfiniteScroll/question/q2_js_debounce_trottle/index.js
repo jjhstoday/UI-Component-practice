@@ -1,5 +1,5 @@
-import renderList from './listRenderer';
-import { debounce } from './util';
+import renderList from './listRenderer.js';
+import { debounce } from './util.js';
 
 const app = document.querySelector('#app');
 const fetchMoreTrigger = document.querySelector('#fetchMore');
@@ -14,7 +14,12 @@ const fetchMore = async () => {
 
 const onScroll = e => {
   // do something
+  const { scrollHeight, scrollTop, clientHeight } = e.target.scrollingElement;
+  console.log(scrollHeight, scrollTop, clientHeight);
+  if (scrollTop + clientHeight === scrollHeight) {
+    fetchMore();
+  }
 };
 
-document.addEventListener('scroll', undefined /* fix here */);
+document.addEventListener('scroll', debounce(onScroll, 300) /* fix here */);
 fetchMore();

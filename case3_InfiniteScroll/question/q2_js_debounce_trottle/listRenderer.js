@@ -1,12 +1,12 @@
-import getList from "./listBuilder";
-import { dummyFetcher } from "./util";
+import getList from './listBuilder.js';
+import { dummyFetcher } from './util.js';
 
-const listElem = document.querySelector("#list");
+const listElem = document.querySelector('#list');
 
 const renderItem = ({ id, no, text }) => {
-  const li = document.createElement("li");
+  const li = document.createElement('li');
   li.insertAdjacentHTML(
-    "beforeend",
+    'beforeend',
     `
       <div class="no">${no}</div>
       <div class="content">
@@ -18,11 +18,11 @@ const renderItem = ({ id, no, text }) => {
   return li;
 };
 
-const renderList = async (page) => {
+const renderList = async page => {
   const list = await dummyFetcher(getList, page);
 
   const frag = document.createDocumentFragment();
-  list.forEach((item) => frag.appendChild(renderItem(item)));
+  list.forEach(item => frag.appendChild(renderItem(item)));
   listElem.appendChild(frag);
 };
 
