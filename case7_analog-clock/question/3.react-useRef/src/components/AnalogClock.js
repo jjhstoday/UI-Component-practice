@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import useAnalogClock from '../hooks.useAnalogClock';
 
 const Container = styled.div`
   position: relative;
@@ -68,12 +68,13 @@ const Mark = styled.div`
 `;
 
 const AnalogClock = () => {
-  // useRef를 사용하여 analog clock 기능을 구현하시오.
+  const [$hourHand, $minuteHand, $secondHand] = useAnalogClock();
+
   return (
     <Container>
-      <HourHand />
-      <MinuteHand />
-      <SecondHand />
+      <HourHand ref={$hourHand} />
+      <MinuteHand ref={$minuteHand} />
+      <SecondHand ref={$secondHand} />
       {Array.from({ length: 12 }, (_, i) => (
         <Mark key={i} index={i}>
           |
