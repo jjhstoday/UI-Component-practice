@@ -47,7 +47,15 @@ const NextControl = styled(Control)`
 `;
 
 const Carousel = ({ images }) => {
-  const { width, currentSlide, duration, isMoving, setWidth, setIsMoving, move } = useCarousel();
+  const {
+    width,
+    currentSlide,
+    duration,
+    isMoving,
+    setWidth,
+    setIsMoving,
+    move
+  } = useCarousel();
 
   const handleImageLoad = ({ target }) => {
     if (width !== target.offsetWidth) setWidth(target.offsetWidth);
@@ -68,7 +76,8 @@ const Carousel = ({ images }) => {
 
     // currentSlide === 0, 즉 선두에 추가한 클론 슬라이드면 currentSlide += images.length로 image의 마지막(images.length)으로 이동
     // currentSlide === images.length + 1, 즉 마자막에 추가한 클론 슬라이드면 currentSlide -= images.length로 image의 선두(1)로 이동
-    const delta = currentSlide === 0 ? 1 : currentSlide === images.length + 1 ? -1 : 0;
+    const delta =
+      currentSlide === 0 ? 1 : currentSlide === images.length + 1 ? -1 : 0;
 
     // 클론 슬라이드가 아니면(delta === 0) 이동하지 않는다.
     if (delta) move(currentSlide + images.length * delta);
@@ -76,15 +85,19 @@ const Carousel = ({ images }) => {
 
   return (
     <Container width={width}>
-      <Slides currentSlide={currentSlide} duration={duration} onTransitionEnd={handleTransitionEnd}>
+      <Slides
+        currentSlide={currentSlide}
+        duration={duration}
+        onTransitionEnd={handleTransitionEnd}
+      >
         {[images[images.length - 1], ...images, images[0]].map((url, i) => (
           <Img key={i} src={url} onLoad={handleImageLoad} />
         ))}
       </Slides>
-      <PrevControl id="prev" onClick={handleClick}>
+      <PrevControl id='prev' onClick={handleClick}>
         &laquo;
       </PrevControl>
-      <NextControl id="next" onClick={handleClick}>
+      <NextControl id='next' onClick={handleClick}>
         &raquo;
       </NextControl>
     </Container>
