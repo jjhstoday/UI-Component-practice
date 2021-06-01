@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import GlobalStyles from './styles/global';
+import Title from './components/Title';
+import Carousel from './components/Carousel';
 
 function App() {
   const [images, setImages] = useState([
@@ -10,25 +13,11 @@ function App() {
 
   return (
     <>
-      <label for="overflow">carousel <b>overflow: hidden</b></label>
-      <input type="checkbox" id="overflow" checked />
-
-      <h1 class="title">Carousel Slider</h1>
-      <div class="carousel">
-        {/* <div class="carousel-slides">
-          <img src="movies/movie-4.jpg">
-          <img src="movies/movie-1.jpg">
-          <img src="movies/movie-2.jpg">
-          <img src="movies/movie-3.jpg">
-          <img src="movies/movie-4.jpg">
-          <img src="movies/movie-1.jpg">
-        </div>
-        <button class="carousel-control prev">&laquo;</button>
-        <button class="carousel-control next">&raquo;</button>  */}
-      </div>
+      <GlobalStyles />
+      <Title>Carousel Slider</Title>
+      <Carousel images={images} />
     </>
   );
 }
 
 export default App;
-
