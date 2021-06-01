@@ -79,7 +79,7 @@ const Carousel = ({ images }) => {
     const delta =
       currentSlide === 0 ? 1 : currentSlide === images.length + 1 ? -1 : 0;
 
-    // 클론 슬라이드가 아니면(delta === 0) 이동하지 않는다.
+    // 클론 슬라이드가 아니면(delta === 0) 이동하지 않는다
     if (delta) move(currentSlide + images.length * delta);
   };
 
